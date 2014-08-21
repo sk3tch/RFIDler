@@ -312,6 +312,7 @@ extern rtccDate	RTC_date;			// date structure
 #define TAG_TYPE_EM4X02                 9
 #define TAG_TYPE_Q5                     10
 #define TAG_TYPE_HID_26                 11
+#define TAG_TYPE_HID_35                 18
 #define TAG_TYPE_INDALA_64              12
 #define TAG_TYPE_INDALA_224             13
 #define TAG_TYPE_UNIQUE                 14

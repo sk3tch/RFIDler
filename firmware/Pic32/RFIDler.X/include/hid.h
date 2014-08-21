@@ -130,8 +130,14 @@
 // Author: Adam Laurie <adam@aperturelabs.com>
 
 #define HID26_DATABITS      96
+#define HID35_DATABITS      96
 
 BOOL hid26_hex_to_uid(unsigned char *response, unsigned char *hid26);
 BOOL bcd_to_hid26_bin(unsigned char *hid26, unsigned char *bcd);
 BOOL hid26_get_uid(BYTE *response);
 BOOL hid26_hex_to_uid(BYTE *response, BYTE *hex);
+
+BOOL hid35_hex_to_uid(unsigned char *response, unsigned char *hid35);
+BOOL bcd_to_hid35_bin(unsigned char *hid35, unsigned char *bcd);
+BOOL hid35_get_uid(BYTE *response);
+BOOL hid35_hex_to_uid(BYTE *response, BYTE *hex);

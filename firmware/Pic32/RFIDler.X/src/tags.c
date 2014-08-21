@@ -159,6 +159,7 @@ const BYTE *TagTypes[]= {
     "EM4X02",
     "Q5",
     "HID26",
+    "HID35",
     "INDALA64",
     "INDALA224",
     "UNIQUE",
@@ -275,6 +276,9 @@ unsigned int tag_get_databits(BYTE tag)
             
         case TAG_TYPE_HID_26:
             return HID26_DATABITS;
+
+        case TAG_TYPE_HID_35:
+            return HID35_DATABITS;
 
         case TAG_TYPE_AWID_26:
             return AWID26_DATABITS;
@@ -438,9 +442,28 @@ BOOL tag_set(BYTE tag)
             break;
                   
         case TAG_TYPE_HID_26:
-            RFIDlerConfig.FrameClock= 765; // 130.7 KHz (134KHz breaks emulation)
+            RFIDlerConfig.FrameClock= 800; // 130.7 KHz (134KHz breaks emulation)
             RFIDlerConfig.Modulation= MOD_MODE_FSK2;
-            RFIDlerConfig.PotHigh=  100;
+            RFIDlerConfig.PotHigh=  110;
+            RFIDlerConfig.DataRate= 50;
+            RFIDlerConfig.DataRateSub0= 8;
+            RFIDlerConfig.DataRateSub1= 10;
+            RFIDlerConfig.DataBits= 96;
+            RFIDlerConfig.TagType= tag;
+            RFIDlerConfig.Repeat= 20;
+            RFIDlerConfig.Timeout= 13000; // timeout in uS (note with prescaler of 16 max is 13107)
+            RFIDlerConfig.Sync[0]= 0x1D;
+            RFIDlerConfig.Sync[1]= 0x55;
+            RFIDlerConfig.Sync[2]= 0x00;
+            RFIDlerConfig.Sync[3]= 0x00;
+            RFIDlerConfig.SyncBits= 16;
+            RFIDlerConfig.RWD_Wake_Period= 1000;
+            break;
+
+       case TAG_TYPE_HID_35:
+            RFIDlerConfig.FrameClock= 800; // 130.7 KHz (134KHz breaks emulation)
+            RFIDlerConfig.Modulation= MOD_MODE_FSK2;
+            RFIDlerConfig.PotHigh=  110;
             RFIDlerConfig.DataRate= 50;
             RFIDlerConfig.DataRateSub0= 8;
             RFIDlerConfig.DataRateSub1= 10;
@@ -685,6 +708,11 @@ BOOL tag_uid_to_hex(BYTE *hex, BYTE *uid, BYTE tagtype)
 
         case TAG_TYPE_HID_26:
             if(!bcd_to_hid26_hex(hex, uid))
+                return FALSE;
+            return TRUE;
+
+       case TAG_TYPE_HID_35:
+            if(!bcd_to_hid35_hex(hex, uid))
                 return FALSE;
             return TRUE;
 

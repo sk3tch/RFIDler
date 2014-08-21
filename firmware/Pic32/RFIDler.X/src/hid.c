@@ -211,3 +211,81 @@ BOOL hid26_get_uid(BYTE *response)
 {
     return fsk_raw_get_uid(response);
 }
+
+
+// convert null-terminated BCD UID (11 digits) to hid35 encoded hex
+// UID is SSSSIIIIIII where S is site-code and I is ID
+BOOL bcd_to_hid35_hex(unsigned char *hid35, unsigned char *bcd)
+{
+    if(bcd_to_hid35_bin(hid35, bcd))
+        return binarraytohex(hid35, hid35, 96);
+    else
+        return FALSE;
+}
+
+// convert 96 bit HID FSK data to 11 digit BCD UID
+BOOL hid35_hex_to_uid(unsigned char *response, unsigned char *hid35)
+{
+    BYTE tmp[96], tmp1[9];
+    unsigned int site;
+    unsigned int id;
+    // todo parity checking etc.
+
+    if(!hextobinarray(tmp, hid35))
+        return FALSE;
+
+    // skip 26 bit header
+    memcpy(tmp, tmp + 26, 70);
+
+    // manchester decode
+    if(manchester_decode(tmp, tmp, 70) != 35)
+        return FALSE;
+
+    // convert to hex, ignoring parity bits
+    if(!binarraytohex(tmp1, tmp + 2, 32))
+        return FALSE;
+
+    // convert hex to site/id
+    sscanf(tmp1,"%3X%5X", &site, &id);
+    // final output 11 byte BCD
+    sprintf(response,"%04d%07d", site, id);
+
+    return TRUE;
+}
+
+// convert null-terminated BCD UID (11 digits) to 96 bit hid35 encoded binary array
+BOOL bcd_to_hid35_bin(unsigned char *hid35, unsigned char *bcd)
+{
+    unsigned char tmp1[10], tmp2[35];
+    unsigned int tmpint;
+
+    if(strlen(bcd) != 10)
+        return FALSE;
+
+    // convert BCD site code to HEX
+    sscanf(bcd, "%04d", &tmpint);
+    sprintf(tmp2, "%03x", tmpint);
+    memcpy(tmp1, tmp2, 3);
+
+    // convert BCD ID to HEX
+    sscanf(bcd + 3, "%07d", &tmpint);;
+    sprintf(tmp2, "%05x", tmpint);
+    // copy with trailing NULL
+    memcpy(tmp1 + 3, tmp2, 6);
+
+    // convert full HEX to binary, leaving room for parity prefix
+    hextobinarray(tmp2 + 1, tmp1);
+
+    wiegand_add_parity(tmp2, tmp2 + 1, 24);
+    // magic 20 bit hid35 header
+    hextobinarray(hid35, "05");
+    // add manchester encoded hid data
+    manchester_encode(hid35 + 26, tmp2, 35);
+    return TRUE;
+}
+
+// return raw HEX UID
+BOOL hid35_get_uid(BYTE *response)
+{
+    return fsk_raw_get_uid(response);
+}

@@ -1,0 +1,36 @@
+build/debug/production/src/main.o:  \
+src/main.c  \
+include/HardwareProfile.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/Compiler.h  \
+ include/usb_config.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_common.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_ch9.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_device.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_hal.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_hal_pic32.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/USB/usb_function_cdc.h  \
+ include/uart3.h  \
+include/rfidler.h  \
+include/indala.h  \
+include/ask.h  \
+ include/emulate.h  \
+include/clock.h  \
+include/rwd.h  \
+include/detect.h  \
+ include/hitagcrypto.h  \
+include/comms.h  \
+include/tags.h  \
+include/util.h  \
+ include/auto.h  \
+include/uid.h  \
+include/login.h  \
+include/auth.h  \
+include/q5.h  \
+ include/vtag.h  \
+include/sc_config.h  \
+include/HardwareProfile.h  \
+ include/wiegand.h  \
+include/analogue.h  \
+include/iso_7816.h  \
+ /microchip_solutions_v2013-06-15/Microchip/Include/./Smart\ Card/SClib.h 

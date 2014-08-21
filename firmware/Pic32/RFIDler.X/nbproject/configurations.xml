@@ -146,7 +146,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PK3OBPlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>1.32</languageToolchainVersion>
+        <languageToolchainVersion>1.33</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <compileType>
@@ -155,8 +155,11 @@
             <linkerLibFileItem>/opt/microchip/xc32/v1.32/pic32mx/lib/libmchp_peripheral_32MX795F512L.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
+        <archiverTool>
+        </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
       </compileType>
@@ -193,6 +196,8 @@
         <property key="use-cci" value="false"/>
         <property key="use-indirect-calls" value="false"/>
       </C32>
+      <C32-AR>
+      </C32-AR>
       <C32-AS>
         <property key="assembler-symbols" value=""/>
         <property key="enable-symbols" value="true"/>
@@ -284,6 +289,8 @@
       <item path="procdefs.ld" ex="true" overriding="false">
         <C32>
         </C32>
+        <C32-AR>
+        </C32-AR>
         <C32-AS>
         </C32-AS>
         <C32-LD>
@@ -302,7 +309,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>1.32</languageToolchainVersion>
+        <languageToolchainVersion>1.33</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <compileType>
@@ -311,8 +318,11 @@
             <linkerLibFileItem>/opt/microchip/xc32/v1.32/pic32mx/lib/libmchp_peripheral_32MX795F512L.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
+        <archiverTool>
+        </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
       </compileType>
@@ -330,6 +340,8 @@
             overriding="false">
         <C32>
         </C32>
+        <C32-AR>
+        </C32-AR>
         <C32-AS>
         </C32-AS>
         <C32-LD>
@@ -344,6 +356,8 @@
             overriding="false">
         <C32>
         </C32>
+        <C32-AR>
+        </C32-AR>
         <C32-AS>
         </C32-AS>
         <C32-LD>
@@ -358,6 +372,8 @@
             overriding="false">
         <C32>
         </C32>
+        <C32-AR>
+        </C32-AR>
         <C32-AS>
         </C32-AS>
         <C32-LD>
@@ -391,6 +407,8 @@
         <property key="use-cci" value="false"/>
         <property key="use-indirect-calls" value="false"/>
       </C32>
+      <C32-AR>
+      </C32-AR>
       <C32-AS>
         <property key="assembler-symbols" value=""/>
         <property key="enable-symbols" value="true"/>
@@ -463,6 +481,8 @@
       <item path="procdefs.ld" ex="true" overriding="false">
         <C32>
         </C32>
+        <C32-AR>
+        </C32-AR>
         <C32-AS>
         </C32-AS>
         <C32-LD>
