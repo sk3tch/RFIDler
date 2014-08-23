@@ -746,6 +746,38 @@ BYTE parity(unsigned char *bits, BYTE type, unsigned int length)
     return x ^ type;
 }
 
+// return parity bit required to match type
+BYTE parity_hid35(unsigned char *bits, BYTE type, unsigned int length)
+{
+    unsigned int x = 0;
+    unsigned int i = 0;
+
+    while(i < length)
+    {
+       if(i%3 != 2)
+       {
+         x += bits[i] - '0';
+       }
+       i++;
+    }
+
+    return x ^ type;
+}
+
+BYTE parity_all(unsigned char *bits, BYTE type, unsigned int length)
+{
+    unsigned int x = 0;
+    unsigned int i = 0;
+
+    while(i < length)
+    {
+         x += bits[i] - '0';
+    }
+    i++;
+
+    return x ^ type;
+}
+
 // wait for a pulse on the reader coil and return it's length
 // note this will return a partial pulse if it's already started
 // return pulse length in ticks

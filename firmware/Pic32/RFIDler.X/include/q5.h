@@ -155,6 +155,7 @@
 #define Q5_DEFAULT_CONFIG_BLOCK      "E601F004"      // q5 native mode (also em4x02/unique)
 #define Q5_FDXB_CONFIG_BLOCK         "E600F0E8"      // emulate fdx-b
 #define Q5_HID_26_CONFIG_BLOCK       "E6018056"      // hid 26 bit
+#define Q5_HID_35_CONFIG_BLOCK       "E6018056"      // hid 35 bit - What should this be?
 #define Q5_INDALA_64_CONFIG_BLOCK    "E600F014"      // emulate indala 64 bit
 #define Q5_INDALA_224_CONFIG_BLOCK   "E600F01E"      // emulate indala 224 bit
 

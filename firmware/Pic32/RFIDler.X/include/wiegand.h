@@ -129,7 +129,6 @@
 
 // Author: Adam Laurie <adam@aperturelabs.com>
 
-
 BOOL learn_wiegand(BYTE trigger);
 BOOL read_wiegand(BYTE trigger);
 unsigned char read_wiegand_bit(unsigned int timeout);

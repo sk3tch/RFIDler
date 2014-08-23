@@ -233,8 +233,8 @@ BOOL hid35_hex_to_uid(unsigned char *response, unsigned char *hid35)
 
     if(!hextobinarray(tmp, hid35))
         return FALSE;
-
-    // skip 26 bit header
+    
+    // skip 26 bit header - possibly don't use same buffer
     memcpy(tmp, tmp + 26, 70);
 
     // manchester decode
@@ -274,11 +274,11 @@ BOOL bcd_to_hid35_bin(unsigned char *hid35, unsigned char *bcd)
     memcpy(tmp1 + 3, tmp2, 6);
 
     // convert full HEX to binary, leaving room for parity prefix
-    hextobinarray(tmp2 + 1, tmp1);
+    hextobinarray(tmp2 + 2, tmp1);
 
-    wiegand_add_parity(tmp2, tmp2 + 1, 24);
-    // magic 20 bit hid35 header
-    hextobinarray(hid35, "05");
+    wiegand_add_parity_hid35(tmp2, tmp2 + 2, 32);
+    // magic 26 bit hid35 header
+    hextobinarray(hid35, "755566");
     // add manchester encoded hid data
     manchester_encode(hid35 + 26, tmp2, 35);
     return TRUE;

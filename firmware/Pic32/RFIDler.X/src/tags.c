@@ -159,13 +159,13 @@ const BYTE *TagTypes[]= {
     "EM4X02",
     "Q5",
     "HID26",
-    "HID35",
     "INDALA64",
     "INDALA224",
     "UNIQUE",
     "FDXB",
     "T55X7",
     "AWID26",
+    "HID35",
     NULL
 };
 

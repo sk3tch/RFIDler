@@ -168,6 +168,9 @@ BOOL get_tag_uid(BYTE *response)
         case TAG_TYPE_HID_26:
             return hid26_get_uid(response);
 
+        case TAG_TYPE_HID_35:
+            return hid35_get_uid(response);
+
         case TAG_TYPE_HITAG1:
             return hitag1_get_uid(response);
 
@@ -223,6 +226,9 @@ BOOL interpret_uid(BYTE *response, BYTE *hex, BYTE tagtype)
 
         case TAG_TYPE_HID_26:
             return hid26_hex_to_uid(response, hex);
+
+        case TAG_TYPE_HID_35:
+            return hid35_hex_to_uid(response, hex);
 
         case TAG_TYPE_HITAG1:
             return hitag1_hex_to_uid(response, hex);

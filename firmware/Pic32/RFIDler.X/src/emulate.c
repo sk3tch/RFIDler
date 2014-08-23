@@ -160,6 +160,12 @@ BOOL emulate_tag(unsigned char *UID)
                 return FALSE;
             return send_fsk_bin(TmpBuff, RFIDlerConfig.DataBits, RFIDlerConfig.FrameClock, RFIDlerConfig.DataRate, RFIDlerConfig.DataRateSub0, RFIDlerConfig.DataRateSub1, RFIDlerConfig.Repeat);
 
+        case TAG_TYPE_HID_35:
+            if(!bcd_to_hid35_bin(TmpBuff, UID))
+                return FALSE;
+            return send_fsk_bin(TmpBuff, RFIDlerConfig.DataBits, RFIDlerConfig.FrameClock, RFIDlerConfig.DataRate, RFIDlerConfig.DataRateSub0, RFIDlerConfig.DataRateSub1, RFIDlerConfig.Repeat);
+
+
         case TAG_TYPE_FDXB:
             if(!uid_to_fdxb_bin(TmpBuff, UID))
                 return FALSE;

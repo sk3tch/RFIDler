@@ -505,6 +505,10 @@ BOOL q5_emulate_config_block(BYTE *config, BYTE target_tagtype)
             memcpy(config, Q5_HID_26_CONFIG_BLOCK, HEXDIGITS(Q5_BLOCKSIZE));
             return TRUE;
 
+       case TAG_TYPE_HID_35:
+            memcpy(config, Q5_HID_35_CONFIG_BLOCK, HEXDIGITS(Q5_BLOCKSIZE));
+            return TRUE;
+
         case TAG_TYPE_FDXB:
             memcpy(config, Q5_FDXB_CONFIG_BLOCK, HEXDIGITS(Q5_BLOCKSIZE));
             return TRUE;

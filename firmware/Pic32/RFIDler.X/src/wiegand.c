@@ -434,6 +434,17 @@ void wiegand_add_parity(unsigned char *target, unsigned char *source, unsigned c
     *(target)= parity(source + length / 2, ODD, length / 2);
 }
 
+void wiegand_add_parity_hid35(unsigned char *target, unsigned char *source, unsigned char length)
+{
+    *target++;
+    *(target++)= parity_hid35(source, EVEN, length);
+    memcpy(target, source, length);
+    target += length;
+    *(target)= parity_hid35(*(target - length - 1), ODD, length + 1);
+    *(target) = *(target - length - 2);
+    *(target) = parity_all(*(target + 1), ODD, length + 2);
+}
+
 // disable wiegand output pins by setting them to inputs (needed for hardware test rig)
 void wiegand_out_disable(void)
 {
